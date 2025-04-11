@@ -19,9 +19,11 @@
     }
   },
   "scripts": {
-    "test": "tsx --tsconfig tsconfig.test.json test.mjs",
-    "build": "pkgroll --src source",
-    "prepublishOnly": "npm run build"
+    "pretest": "pnpm run build",
+    "test": "tsx --tsconfig ./tests/nodejs/tsconfig.json ./tests/nodejs/test.cts",
+    "build:prod": "pkgroll --src source --clean-dist",
+    "build": "pkgroll --src source --clean-dist --sourcemap",
+    "prepublishOnly": "npm run build:prod"
   },
   "repository": {
     "type": "git",
@@ -40,9 +42,15 @@
   },
   "homepage": "https://github.com/N1ghtTheF0x/ntf-<NAME>#readme",
   "devDependencies": {
-    "typescript": "latest",
-    "tsx": "latest",
+    "@types/node": "latest",
     "express": "latest",
-    "pkgroll": "latest"
+    "pkgroll": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

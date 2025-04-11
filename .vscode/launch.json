@@ -7,18 +7,18 @@
             "url": "http://localhost:43434/test.html",
             "name": "Test Browser",
             "server":{
-                "program": "server.js"
+                "program": "${workspaceFolder}/scripts/server.cjs"
             }
         },
         {
             "type": "node",
             "request": "launch",
             "name": "Test NodeJS",
-            "program": "${workspaceFolder}/test.ts",
+            "program": "${workspaceFolder}/tests/nodejs/test.cts",
             "runtimeExecutable": "tsx",
             "runtimeArgs": [
                 "--tsconfig",
-                "tsconfig.test.json"
+                "${workspaceFolder}/tests/nodejs/tsconfig.json"
             ]
         }
     ]
