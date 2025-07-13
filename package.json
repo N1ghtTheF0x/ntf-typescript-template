@@ -5,13 +5,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.cts",
+  "types": "./dist/index.d.ts",
   "exports": {
     "require": {
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "import": {
       "types": "./dist/index.d.mts",
@@ -21,8 +21,8 @@
   "scripts": {
     "pretest": "pnpm run build",
     "test": "tsx --tsconfig ./tests/nodejs/tsconfig.json ./tests/nodejs/test.cts",
-    "build:prod": "pkgroll --src source --clean-dist",
-    "build": "pkgroll --src source --clean-dist --sourcemap",
+    "build:prod": "tsup",
+    "build": "pnpm run build:prod --sourcemap",
     "prepublishOnly": "npm run build:prod"
   },
   "repository": {
@@ -44,13 +44,8 @@
   "devDependencies": {
     "@types/node": "latest",
     "express": "latest",
-    "pkgroll": "latest",
+    "tsup": "latest",
     "tsx": "latest",
     "typescript": "latest"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
   }
 }
